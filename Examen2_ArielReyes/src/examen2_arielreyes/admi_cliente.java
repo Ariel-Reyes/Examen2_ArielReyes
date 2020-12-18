@@ -18,17 +18,18 @@ import java.util.ArrayList;
  * @author Ariel
  */
 public class admi_cliente {
-    
-     ArrayList<clientes> lista_cliente = new ArrayList();
+
+    ArrayList<clientes> lista_cliente = new ArrayList();
     File archivo = null;
 
     public ArrayList<clientes> getLista_cliente() {
         return lista_cliente;
     }
+
     public admi_cliente(String path) {
         archivo = new File(path);
     }
-  
+
     public void setLista_cliente(ArrayList<clientes> lista_cliente) {
         this.lista_cliente = lista_cliente;
     }
@@ -47,14 +48,14 @@ public class admi_cliente {
     }
 
     public void cargarArchivo() {
-        try {            
+        try {
             lista_cliente = new ArrayList();
             clientes temp;
             if (archivo.exists()) {
                 FileInputStream entrada
-                    = new FileInputStream(archivo);
+                        = new FileInputStream(archivo);
                 ObjectInputStream objeto
-                    = new ObjectInputStream(entrada);
+                        = new ObjectInputStream(entrada);
                 try {
                     while ((temp = (clientes) objeto.readObject()) != null) {
                         lista_cliente.add(temp);
@@ -90,6 +91,4 @@ public class admi_cliente {
         }
     }
 
-    
-    
 }

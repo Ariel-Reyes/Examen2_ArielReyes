@@ -104,8 +104,6 @@ public class barra_hilo extends Thread {
         }
 
         ///
-       
-
         //
         if (c.contains("Refrescos")) {
             for (int i = 0; i < barra.getMaximum(); i++) {

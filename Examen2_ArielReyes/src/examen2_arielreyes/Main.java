@@ -28,12 +28,13 @@ public class Main extends javax.swing.JFrame {
     /**
      * Creates new form Main
      */
-    static int orden = 1; 
+    static int orden = 1;
+
     public Main() {
         this.setExtendedState(MAXIMIZED_BOTH);
 
         initComponents();
-        
+
         DefaultComboBoxModel model = (DefaultComboBoxModel) cb_comple.getModel();
         model.addElement("Biscuits");
         model.addElement("Pure");
@@ -43,7 +44,7 @@ public class Main extends javax.swing.JFrame {
         model.addElement("Pure");
         cb_comple.setModel(model);
         // agregar combo a cliente 
-        
+
     }
 
     /**
@@ -410,17 +411,17 @@ public class Main extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(258, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(262, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(128, 128, 128)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(236, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -433,7 +434,7 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        
+
         try {
             String nombre = jTextField1.getText();
             int pollo = (int) jSpinner1.getValue();
@@ -498,7 +499,7 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         admi_cliente admi = new admi_cliente("./cliente.arf");
         admi.cargarArchivo();
-       
+
         if (jTabbedPane1.getSelectedIndex() == 0) {
             DefaultComboBoxModel model = new DefaultComboBoxModel(admi.getLista_cliente().toArray());
             cb_coci.setModel(model);
@@ -506,79 +507,84 @@ public class Main extends javax.swing.JFrame {
         } else {
 
         }
-        
+
     }//GEN-LAST:event_jTabbedPane1StateChanged
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
 
-        int indice = cb_coci.getSelectedIndex();
-        clientes cliente = (clientes) cb_coci.getSelectedItem();
+        try {
+            int indice = cb_coci.getSelectedIndex();
+            clientes cliente = (clientes) cb_coci.getSelectedItem();
 
-        String pedidos = cliente.getOrdenes().toString();
-        jTextArea1.setText( "--------POPEYES------- "+"\n"+"NOMBRE DEL CLIENTE: " + cliente.getNombre_cliente() + "\n" + "PEDIDOS: " + pedidos + "\n" + "FECHA: " + new Date().toString());
+            String pedidos = cliente.getOrdenes().toString();
+            jTextArea1.setText("--------POPEYES------- " + "\n" + "NOMBRE DEL CLIENTE: " + cliente.getNombre_cliente() + "\n" + "PEDIDOS: " + pedidos + "\n" + "FECHA: " + new Date().toString());
 
-        ArrayList c = new ArrayList();
-        int tam = cliente.getOrdenes().get(0).getTipo().size();
+            ArrayList c = new ArrayList();
+            int tam = cliente.getOrdenes().get(0).getTipo().size();
 
-        for (int i = 0; i < tam; i++) {
-            c.add(cliente.getOrdenes().get(0).getTipo().get(i));
+            for (int i = 0; i < tam; i++) {
+                c.add(cliente.getOrdenes().get(0).getTipo().get(i));
+            }
+            if (c.contains("papas")) {
+                System.out.println("s");
+            }
+            // System.out.println(c);
+            barra = new barra_hilo(jProgressBar1, jTable1, c, indice, cliente);
+            barra.start();
+        } catch (Exception r) {
+            JOptionPane.showMessageDialog(this, "ERROR");
         }
-          if(c.contains("papas")){
-              System.out.println("s");
-          }
-         // System.out.println(c);
-        barra = new barra_hilo(jProgressBar1, jTable1, c, indice,  cliente);
-        barra.start();
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Numero Orden", "Elemento", "Tiempo"
-            }
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                    "Numero Orden", "Elemento", "Tiempo"
+                }
         ));
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        factu(); 
+        factu();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-
-        File fl = null;
-        FileWriter fw = null;
-        BufferedWriter bw = null;
-
         try {
-            fl = new File("./FACTURA.txt");
-            fw = new FileWriter(fl);// sino esta creado el documento se crea automaticamente pero si ya esta creado se le pone un true  fw = new FileWriter(fl,true);
-            bw = new BufferedWriter(fw);
-            String linea = jTextArea1.getText();
-            bw.write(linea);
-            bw.newLine();
-            bw.flush(); // esto es para extraer los datos escritos en la memora ram 
+            File fl = null;
+            FileWriter fw = null;
+            BufferedWriter bw = null;
+
+            try {
+                fl = new File("./FACTURA.txt");
+                fw = new FileWriter(fl);// sino esta creado el documento se crea automaticamente pero si ya esta creado se le pone un true  fw = new FileWriter(fl,true);
+                bw = new BufferedWriter(fw);
+                String linea = jTextArea1.getText();
+                bw.write(linea);
+                bw.newLine();
+                bw.flush(); // esto es para extraer los datos escritos en la memora ram 
+                JOptionPane.showMessageDialog(this, "FACTURADO");
+            } catch (Exception e) {
+
+            }
+            try {
+                bw.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                fw.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } catch (Exception e) {
-
+            JOptionPane.showMessageDialog(this, "DEBE PRIMERO EJECUTAR A HACER COMIDA ");
         }
-        try {
-            bw.close();
-        } catch (IOException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            fw.close();
-        } catch (IOException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
     }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
@@ -622,7 +628,8 @@ public class Main extends javax.swing.JFrame {
         Clientes_compra.setLocationRelativeTo(this);
         Clientes_compra.setVisible(true);
     }
-     public void coci() {
+
+    public void coci() {
         cocinar.pack();
         cocinar.setModal(true);
         cocinar.setLocationRelativeTo(this);
@@ -635,7 +642,6 @@ public class Main extends javax.swing.JFrame {
         FACTURA.setLocationRelativeTo(this);
         FACTURA.setVisible(true);
     }
-
 
 
        barra_hilo barra;

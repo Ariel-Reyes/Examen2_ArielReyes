@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class clientes implements Serializable {
 
-    String nombre_cliente;
+    String nombre_cliente; // se serializan estas clases 
     ArrayList<orden> ordenes = new ArrayList();
     private static final long SerialVersionUID = 777L;
 

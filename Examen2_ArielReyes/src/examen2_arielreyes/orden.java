@@ -53,6 +53,4 @@ public class orden implements Serializable {
         return piezas_pollo + " ," + tipo;
     }
 
-
-
 }

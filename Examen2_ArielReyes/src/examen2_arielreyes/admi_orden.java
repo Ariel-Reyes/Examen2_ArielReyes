@@ -18,16 +18,18 @@ import java.util.ArrayList;
  * @author Ariel
  */
 public class admi_orden {
-     ArrayList<orden> lista_orden = new ArrayList();
+
+    ArrayList<orden> lista_orden = new ArrayList();
     File archivo = null;
 
     public ArrayList<orden> getLista_pelicula() {
         return lista_orden;
     }
+
     public admi_orden(String path) {
         archivo = new File(path);
     }
-  
+
     public void setLista_pelicula(ArrayList<orden> lista_orden) {
         this.lista_orden = lista_orden;
     }
@@ -46,14 +48,14 @@ public class admi_orden {
     }
 
     public void cargarArchivo() {
-        try {            
+        try {
             lista_orden = new ArrayList();
             orden temp;
             if (archivo.exists()) {
                 FileInputStream entrada
-                    = new FileInputStream(archivo);
+                        = new FileInputStream(archivo);
                 ObjectInputStream objeto
-                    = new ObjectInputStream(entrada);
+                        = new ObjectInputStream(entrada);
                 try {
                     while ((temp = (orden) objeto.readObject()) != null) {
                         lista_orden.add(temp);
