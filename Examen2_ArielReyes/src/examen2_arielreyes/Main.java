@@ -5,7 +5,15 @@
  */
 package examen2_arielreyes;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -74,6 +82,11 @@ public class Main extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        FACTURA = new javax.swing.JDialog();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jButton7 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -228,6 +241,13 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        jButton6.setText("FACTURA");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -257,8 +277,13 @@ public class Main extends javax.swing.JFrame {
                 .addGap(31, 31, 31))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(154, 154, 154))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(154, 154, 154))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton6)
+                        .addGap(19, 19, 19))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -280,7 +305,8 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
                 .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
-                .addGap(56, 56, 56))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jTabbedPane1.addTab("", jPanel1);
@@ -315,6 +341,41 @@ public class Main extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTabbedPane1)
                         .addContainerGap())))
+        );
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane4.setViewportView(jTextArea1);
+
+        jButton7.setText("FACTURAR");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout FACTURALayout = new javax.swing.GroupLayout(FACTURA.getContentPane());
+        FACTURA.getContentPane().setLayout(FACTURALayout);
+        FACTURALayout.setHorizontalGroup(
+            FACTURALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FACTURALayout.createSequentialGroup()
+                .addGroup(FACTURALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(FACTURALayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(FACTURALayout.createSequentialGroup()
+                        .addGap(144, 144, 144)
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+        FACTURALayout.setVerticalGroup(
+            FACTURALayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FACTURALayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -450,13 +511,17 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        
+
         int indice = cb_coci.getSelectedIndex();
         clientes cliente = (clientes) cb_coci.getSelectedItem();
+
+        String pedidos = cliente.getOrdenes().toString();
+        jTextArea1.setText( "--------POPEYES------- "+"\n"+"NOMBRE DEL CLIENTE: " + cliente.getNombre_cliente() + "\n" + "PEDIDOS: " + pedidos + "\n" + "FECHA: " + new Date().toString());
+
         ArrayList c = new ArrayList();
-        int tam =  cliente.getOrdenes().get(0).getTipo().size();
-        
-          for (int i = 0; i < tam; i++) {
+        int tam = cliente.getOrdenes().get(0).getTipo().size();
+
+        for (int i = 0; i < tam; i++) {
             c.add(cliente.getOrdenes().get(0).getTipo().get(i));
         }
           if(c.contains("papas")){
@@ -479,6 +544,42 @@ public class Main extends javax.swing.JFrame {
             }
         ));
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        factu(); 
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+
+        File fl = null;
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+
+        try {
+            fl = new File("./FACTURA.txt");
+            fw = new FileWriter(fl);// sino esta creado el documento se crea automaticamente pero si ya esta creado se le pone un true  fw = new FileWriter(fl,true);
+            bw = new BufferedWriter(fw);
+            String linea = jTextArea1.getText();
+            bw.write(linea);
+            bw.newLine();
+            bw.flush(); // esto es para extraer los datos escritos en la memora ram 
+        } catch (Exception e) {
+
+        }
+        try {
+            bw.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            fw.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -528,10 +629,19 @@ public class Main extends javax.swing.JFrame {
         cocinar.setVisible(true);
     }
 
+    public void factu() {
+        FACTURA.pack();
+        FACTURA.setModal(true);
+        FACTURA.setLocationRelativeTo(this);
+        FACTURA.setVisible(true);
+    }
+
+
 
        barra_hilo barra;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog Clientes_compra;
+    private javax.swing.JDialog FACTURA;
     private javax.swing.JComboBox<String> cb_coci;
     private javax.swing.JComboBox<String> cb_comple;
     private javax.swing.JDialog cocinar;
@@ -540,6 +650,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -558,9 +670,11 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JList<String> list_comple;
     // End of variables declaration//GEN-END:variables

@@ -1,0 +1,4 @@
+--------POPEYES------- 
+NOMBRE DEL CLIENTE: Jose
+PEDIDOS: [5 ,[papas]]
+FECHA: Fri Dec 18 16:46:56 CST 2020
