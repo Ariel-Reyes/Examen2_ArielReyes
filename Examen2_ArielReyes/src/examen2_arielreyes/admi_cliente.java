@@ -22,14 +22,14 @@ public class admi_cliente {
      ArrayList<clientes> lista_cliente = new ArrayList();
     File archivo = null;
 
-    public ArrayList<clientes> getLista_pelicula() {
+    public ArrayList<clientes> getLista_cliente() {
         return lista_cliente;
     }
     public admi_cliente(String path) {
         archivo = new File(path);
     }
   
-    public void setLista_pelicula(ArrayList<clientes> lista_cliente) {
+    public void setLista_cliente(ArrayList<clientes> lista_cliente) {
         this.lista_cliente = lista_cliente;
     }
 
