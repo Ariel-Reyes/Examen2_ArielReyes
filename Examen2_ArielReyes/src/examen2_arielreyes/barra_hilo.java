@@ -69,7 +69,9 @@ public class barra_hilo extends Thread {
     @Override
     public void run() {
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+        
         if (c.contains("papas")) {
+             barra.setMaximum(100);
             for (int i = 0; i < barra.getMaximum(); i++) {
                 barra.setValue(i);
                 try {
@@ -87,6 +89,7 @@ public class barra_hilo extends Thread {
         }
 
         if (c.contains("Biscuits")) {
+            barra.setMaximum(100);
             for (int i = 0; i < barra.getMaximum(); i++) {
                 barra.setValue(i);
                 try {
@@ -104,8 +107,11 @@ public class barra_hilo extends Thread {
         }
 
         ///
+       
+
         //
         if (c.contains("Refrescos")) {
+             barra.setMaximum(100);
             for (int i = 0; i < barra.getMaximum(); i++) {
                 barra.setValue(i);
                 try {
@@ -123,6 +129,7 @@ public class barra_hilo extends Thread {
         }
 
         if (c.contains("Pure")) {
+             barra.setMaximum(100);
             for (int i = 0; i < barra.getMaximum(); i++) {
                 barra.setValue(i);
                 try {
@@ -140,6 +147,7 @@ public class barra_hilo extends Thread {
         }
         //
         if (c.contains("Pie")) {
+             barra.setMaximum(100);
             for (int i = 0; i < barra.getMaximum(); i++) {
                 barra.setValue(i);
                 try {
