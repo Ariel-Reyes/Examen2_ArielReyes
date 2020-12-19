@@ -22,7 +22,7 @@ public class admi_orden {
     ArrayList<orden> lista_orden = new ArrayList();
     File archivo = null;
 
-    public ArrayList<orden> getLista_pelicula() {
+    public ArrayList<orden> getLista_orden() {
         return lista_orden;
     }
 
@@ -30,7 +30,7 @@ public class admi_orden {
         archivo = new File(path);
     }
 
-    public void setLista_pelicula(ArrayList<orden> lista_orden) {
+    public void setLista_orden(ArrayList<orden> lista_orden) {
         this.lista_orden = lista_orden;
     }
 
@@ -43,7 +43,7 @@ public class admi_orden {
     }
     // Mutador extra
 
-    public void setPelicula(orden t) {
+    public void setorden(orden t) {
         this.lista_orden.add(t);
     }
 

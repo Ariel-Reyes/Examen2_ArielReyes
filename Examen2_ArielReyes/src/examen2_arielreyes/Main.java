@@ -451,7 +451,7 @@ public class Main extends javax.swing.JFrame {
 
             admi_orden admi_or = new admi_orden("./orden.arf");
             admi_or.cargarArchivo();
-            admi_or.getLista_pelicula().add(or);
+            admi_or.getLista_orden().add(or);
             admi_or.escribirArchivo();
 
             clientes clien = new clientes(nombre);
@@ -504,7 +504,7 @@ public class Main extends javax.swing.JFrame {
         if (jTabbedPane1.getSelectedIndex() == 0) {
             DefaultComboBoxModel model = new DefaultComboBoxModel(admi.getLista_cliente().toArray());
             cb_coci.setModel(model);
-
+admi.escribirArchivo();
         } else {
 
         }

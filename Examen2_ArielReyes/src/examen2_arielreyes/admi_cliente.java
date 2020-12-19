@@ -43,7 +43,7 @@ public class admi_cliente {
     }
     // Mutador extra
 
-    public void setPelicula(clientes t) {
+    public void setcliente(clientes t) {
         this.lista_cliente.add(t);
     }
 
